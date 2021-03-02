@@ -1,0 +1,32 @@
+name: docker-build
+
+on:
+  push:
+    branches:
+    - master
+  pull_request:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    -
+      name: Checkout repo
+      uses: actions/checkout@v2
+    -
+      name: Download Oracle JDK tar.gz
+            TO BE DONE
+    -
+      name: Build image
+      id: docker_build
+      uses: docker/build-push-action@v2.2.2
+      with:
+        push: false
+        tags: myrepo/oracle-jdk:latest
+        build-args: |
+          BASEIMAGE_TAG=20.04
+    -
+      name: Image digest
+      run: echo ${{ steps.docker_build.outputs.digest }}
