@@ -1,6 +1,7 @@
 # Oracle JDK Docker
 
-This repo contains a basic `Dockerfile` for Ubuntu with Oracle Java.
+This repo contains a basic `Dockerfile` for Ubuntu with Oracle Java and a *builder* `Dockerfile`
+including *Gradle*, *git* and *wget*.
 
 ## How to build
 
@@ -33,6 +34,17 @@ This repo contains a basic `Dockerfile` for Ubuntu with Oracle Java.
 | Arg           | Default                                | Description                                                                                           |
 |---------------|----------------------------------------|-------------------------------------------------------------------------------------------------------|
 | BASEIMAGE_TAG | `20.04`                                | Tag of the `ubuntu` Docker image to use as base image                                                 |
-| JAVA_VERSION  | `jdk-11.0.10`                          | Java version that is used. Name of the jdk folder inside the downloaded JDK `*.tar.gz`                 |
-| JAVA_FILENAME | `${JAVA_VERSION}_linux-x64_bin.tar.gz` | File name of the downloaded JDK `*.tar.gz`                                                              |
+| JAVA_VERSION  | `jdk-11.0.10`                          | Java version that is used. Name of the jdk folder inside the downloaded JDK `*.tar.gz`                |
+| JAVA_FILENAME | `${JAVA_VERSION}_linux-x64_bin.tar.gz` | File name of the downloaded JDK `*.tar.gz`                                                            |
 | INSTALL_DIR   | `/usr/lib/jdk`                         | Install dir of the JDK inside the container. `$JAVA_HOME` will be set to `$INSTALL_DIR/$JAVA_VERSION` |
+
+## Builder Dockerfile
+
+The *builder* Dockerfile is based on the *Oracle-JDK* `Dockerfile`.
+### Build args
+
+| Arg            | Default                                | Description                                                                                           |
+|----------------|----------------------------------------|-------------------------------------------------------------------------------------------------------|
+| JAVA_VERSION   | `jdk-11.0.10`                          | Java version that is used. Name of the jdk folder inside the downloaded JDK `*.tar.gz`                |
+| INSTALL_DIR    | `/usr/lib/jdk`                         | Install dir of the JDK inside the container. `$JAVA_HOME` will be set to `$INSTALL_DIR/$JAVA_VERSION` |
+| GRADLE_VERSION | `6.8.3`                                | Gradle version that is used for the image                                                             |
