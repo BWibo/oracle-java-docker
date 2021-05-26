@@ -40,11 +40,12 @@ including *Gradle*, *git* and *wget*.
 
 ## Builder Dockerfile
 
-The *builder* Dockerfile is based on the *Oracle-JDK* `Dockerfile`.
+The *builder* Dockerfile is based on the *Oracle-JDK* `Dockerfile`. To build the image follow the steps above, but use this to build the image:
+`docker build -t myrepo/oracle-jdk-builder:jdk-11.0.11 --build-arg JAVA_VERSION=jdk-11.0.11 -f oracle-java-builder.dockerfile .`
 ### Build args
 
 | Arg            | Default                                | Description                                                                                           |
 |----------------|----------------------------------------|-------------------------------------------------------------------------------------------------------|
 | JAVA_VERSION   | `jdk-11.0.11`                          | Java version that is used. Name of the jdk folder inside the downloaded JDK `*.tar.gz`                |
 | INSTALL_DIR    | `/usr/lib/jdk`                         | Install dir of the JDK inside the container. `$JAVA_HOME` will be set to `$INSTALL_DIR/$JAVA_VERSION` |
-| GRADLE_VERSION | `6.8.3`                                | Gradle version that is used for the image                                                             |
+| GRADLE_VERSION | `7.0.2`                                | Gradle version that is used for the image                                                             |
