@@ -1,5 +1,5 @@
 # Build sunpot-core ###########################################################
-ARG JAVA_VERSION='jdk-11.0.10'
+ARG JAVA_VERSION='jdk-11.0.12'
 FROM bsvr.gis.lrg.tum.de/oracle-java:${JAVA_VERSION}
 
 ENV JAVA_VERSION=$JAVA_VERSION
