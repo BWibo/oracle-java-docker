@@ -11,7 +11,7 @@ RUN set -x && \
   rm -rf /var/lib/apt/lists/*
 
 # Install gradle
-ARG GRADLE_VERSION='7.0.2'
+ARG GRADLE_VERSION='7.3.3'
 ENV GRADLE_VERSION=$GRADLE_VERSION
 
 RUN set -x && \
