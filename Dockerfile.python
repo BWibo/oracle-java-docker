@@ -1,0 +1,20 @@
+ARG BASEIMAGE_TAG='20.04'
+FROM ubuntu:${BASEIMAGE_TAG}
+
+# Setup ENV
+ARG JAVA_VERSION='jdk-11.0.12'
+ARG INSTALL_DIR='/usr/lib/jdk'
+ARG JAVA_FILENAME=${JAVA_VERSION}_linux-x64_bin.tar.gz
+ENV JAVA_VERSION=$JAVA_VERSION
+ENV JAVA_HOME="$INSTALL_DIR/$JAVA_VERSION"
+ENV PATH="$PATH:$INSTALL_DIR/$JAVA_VERSION/bin"
+
+# copy jdk tar.gz, untar, Install Python
+COPY "$JAVA_FILENAME" /
+RUN set -x && \
+    mkdir -vp "$INSTALL_DIR" && \
+    tar xzvf "/$JAVA_FILENAME" -C "$INSTALL_DIR" && \
+    chmod -vR a+x "$INSTALL_DIR/$JAVA_VERSION/bin" && \
+    apt-get update -y && \
+    apt-get install --no-install-recommends -y python && \
+    rm -rfv "/$JAVA_FILENAME" /var/lib/apt/lists/*
